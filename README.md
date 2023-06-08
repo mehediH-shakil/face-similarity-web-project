@@ -1,12 +1,14 @@
 # Face Similarity Web Project
 
-This web project utilizes HTML, CSS, Django, and machine learning to provide a face similarity verification system. The system employs the `face_recognition` library for face recognition and verification, along with a trained model file to perform similarity checks.
+This web project utilizes HTML, CSS, JavaScript, Django, and machine learning to provide a face similarity verification system. The system employs the `face_recognition` library for face recognition and verification, along with a trained model file to perform similarity checks.
 
 ## Technologies Used
 
 - HTML: The project utilizes HTML to create the structure and layout of the web pages. HTML ensures proper rendering and presentation of the user interface elements.
 
 - CSS: Cascading Style Sheets (CSS) are used to enhance the visual appeal of the web pages. CSS provides styling and customization options to create an attractive and user-friendly interface.
+
+- JavaScript: JavaScript is employed to enhance the interactivity of the web application, enabling dynamic functionality and seamless user experience.
 
 - Django: The project is built using Django, a high-level Python web framework. Django facilitates rapid development, follows the MVC (Model-View-Controller) pattern, and provides various features like URL routing, template rendering, and database handling.
 
