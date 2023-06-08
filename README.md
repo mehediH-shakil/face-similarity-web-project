@@ -1,6 +1,6 @@
 # Face Similarity Web Project
 
-This web project utilizes HTML, CSS, Django, and machine learning to provide a face similarity verification system. The system employs the `face_recognition` library for face recognition and verification, along with a trained model.h5 file to perform similarity checks.
+This web project utilizes HTML, CSS, Django, and machine learning to provide a face similarity verification system. The system employs the `face_recognition` library for face recognition and verification, along with a trained model file to perform similarity checks.
 
 ## Technologies Used
 
@@ -12,7 +12,7 @@ This web project utilizes HTML, CSS, Django, and machine learning to provide a f
 
 - SQLite: The web project employs SQLite, a lightweight and easy-to-use relational database management system. SQLite is integrated with Django's Object-Relational Mapping (ORM) to store and retrieve data efficiently.
 
-- Machine Learning: The core functionality of the project revolves around machine learning. The `face_recognition` library is utilized for face verification, while a trained model.h5 file is used for face similarity checks. The model is trained on a dataset to identify facial features and compute similarity scores accurately.
+- Machine Learning: The core functionality of the project revolves around machine learning. The `face_recognition` library is utilized for face verification, while a trained model file is used for face similarity checks. The model is trained on a dataset to identify facial features and compute similarity scores accurately.
 
 ## Functionality
 
