@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+
+    <meta charset="UTF-8">
+    {% if user.is_authenticated %}
+    <title>{{ request.user.first_name }} {{ request.user.last_name }}</title>
+    {% endif %}
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Main CSS-->
+    <link href="{% static 'css/main.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'css/post.css' %}" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <script src="https://kit.fontawesome.com/700b873bbf.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <header>
+        <h2><a href="{% url 'home' %}"><img src="{% static 'image/logo.png' %}" width="64" alt=""></a></h2>
+        <nav>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'all-post' %}">Post</a></li>
+            <li><a href="{% url 'profile' %}">Welcome, {{ request.user.username }}</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% endif %}
+        </nav>
+    </header>
+
+
+    <section class="hero">
+        <div class="background-image"></div>
+        <div class="hero-content-area">
+
+            <div class="wrapper" style="width: 800px;">
+                <div class="card card-4">
+                    <div class="card-body">
+                        <h2 class="title">Profile</h2>
+                        <div style="color: black; text-align: left;">
+
+                            {% for field in fields %}
+
+                            {% if field.0 != 'Id' and field.0 != 'User' %}
+                            {% if field.0 == 'Gender'%}
+
+                            {% if field.1 == 'M'%}
+                            <p><b>{{ field.0 }}:</b> Male</p>
+                            {% else %}
+                            <p><b>{{ field.0 }}:</b> Female</p>
+                            {% endif %}
+
+                            {% else %}
+
+                            <p><b>{{ field.0 }}:</b> {{ field.1 }}</p>
+
+                            {% endif %}
+                            {% endif %}
+
+                            {% endfor %}
+
+
+                            <div style="text-align: center; padding-top: 10px;">
+                                <a href="{% url 'edit-profile' %}" class="btn btn-primary btn-sm">Edit</a></br>
+                                <p style="padding-top: 5px;">
+                                    <a href="{% url 'change-password' %}"
+                                        style="color: #00d2ff; text-decoration: underline;">Can
+                                        you
+                                        Change
+                                        Password!</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="postboexs">
+                <div class="postbox">
+                    <h2 class="title" style="color: white;">Post</h2>
+                    {% for user_rows in user_rows %}
+                    {% for rows in page %}
+                    {% if user_rows.0 == rows.9 %}
+
+                    {% if user.is_authenticated %}
+                    {% if user_rows.4 == request.user.username %}
+                    <a class="post" style="border: 1px #e5e5e5 dashed"
+                        href="{% url 'user-single-post' %}?data={{ rows.0 }}">
+                        <h4 class="home_post_title" style="padding-left: 20px;">
+                            Missing Person: {{rows.1}} {{ rows.2}}
+                            </br><span style="font-size: x-small;">Posted by </span>
+                            <span style="font-size: x-small; color: #00d2ff;">{{ user_rows.4 }}</span>
+                        </h4>
+                        <p class="home_post_description">
+                            {{rows.5}}
+                        </p>
+                    </a>
+                    {% endif %}
+                    {% endif %}
+
+                    {% endif %}
+                    {% endfor %}
+                    {% endfor %}
+
+                    <div style="padding-top: 10px;">
+                        {% if page.has_previous %}
+                        <a href="{% url 'profile' %}?page={{ page.previous_page_number }}" style="color: #00d2ff;">Prev
+                        </a>
+                        {% endif %}
+                        <span>Page {{ page.number }} of {{ page.paginator.num_pages }}</span>
+                        {% if page.has_next %}
+                        <a href="{% url 'profile' %}?page={{ page.next_page_number }}" style="color: #00d2ff;">
+                            Next
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+
+            <footer>
+                <a href="#">About us</a>
+                <a href="#">Support center</a>
+                <a href="#">Contact us</a>
+                <a href="#">Terms and conditions</a>
+            </footer>
+    </section>
+
+
+</body>
+
+</html>
